@@ -166,7 +166,7 @@
     Note that this model is defined such as self-loops can exist.
 \end{textbox}
 
-
+%TODO move the algorithm below in the configuration mode / only show just the algo in this box
 \begin{textbox}{Rewired exact configuration model}
     When the objective of a configuration model is to obtain a randomized version of an observed graph, a common approach is to fix the exact degree of each node, and to connect \textit{stubs} randomly. An efficient way to do so is to use the following algorithm:
 
@@ -222,7 +222,7 @@
     We use the same logic as for the ER model of the graph being locally tree-like due to the low Clustering Coefficient to show intuitively that the \textit{average distance} is short. This property is verified experimentally.
 \end{textbox}
 
-
+%TODO rm this box?
 \begin{textbox}
     Examples of differences in Clustering and average path length for a few real graphs, compared with randomized versions of it.
 
@@ -271,12 +271,10 @@
             \includegraphics[width=\textwidth]{pics/SW/WS0.png}
             \caption{$p=0$ \\ Regular}
         \end{subfigure}
-        
         \begin{subfigure}{.32\textwidth}
             \includegraphics[width=\textwidth]{pics/SW/WS1.png}
             \caption{$p=0.3$ \\ Small world}
         \end{subfigure}
-        
         \begin{subfigure}{.32\textwidth}
             \includegraphics[width=\textwidth]{pics/SW/WS03.png}
             \caption{$p=1$ \\ Random}
@@ -357,23 +355,23 @@
 \end{textbox}
 
 
-\begin{textbox}{Other random graph models }
-    Many other graph models have been proposed in the literature, either \textit{mechanistic models} to mimic common properties of some graphs, as with BA and WS models, or \textit{statistical models} to generate random graphs with imposed constraints, as the Configuration model does with degree distributions.
+% \begin{textbox}{Other random graph models }
+%     Many other graph models have been proposed in the literature, either \textit{mechanistic models} to mimic common properties of some graphs, as with BA and WS models, or \textit{statistical models} to generate random graphs with imposed constraints, as the Configuration model does with degree distributions.
 
-    Some examples of mechanistic models:
-    \begin{itemize}
-        \item Vertex copying model (\cite{kleinberg1999web})
-        \item Tunable-clustering scale-free model (\cite{holme2002growing})
-        \item Forest fire model (\cite{leskovec2005graphs})
-    \end{itemize}
+%     Some examples of mechanistic models:
+%     \begin{itemize}
+%         \item Vertex copying model (\cite{kleinberg1999web})
+%         \item Tunable-clustering scale-free model (\cite{holme2002growing})
+%         \item Forest fire model (\cite{leskovec2005graphs})
+%     \end{itemize}
 
-    Some examples of statistical models:
-    \begin{itemize}
-        \item Exponential Random Graphs (\cite{robins2007introduction})
-        \item Stochastic Block Models (\cite{peixoto2019bayesian})
-        \item A survey on the topic (\cite{orbanz2014bayesian})
-    \end{itemize}
-\end{textbox}
+%     Some examples of statistical models:
+%     \begin{itemize}
+%         \item Exponential Random Graphs (\cite{robins2007introduction})
+%         \item Stochastic Block Models (\cite{peixoto2019bayesian})
+%         \item A survey on the topic (\cite{orbanz2014bayesian})
+%     \end{itemize}
+% \end{textbox}
 
 % \begin{textbox}{Vertex-copying model}
 % Although the demonstration is beyond the scope of this class \footcite{barabasi1999emergence}, it can be shown that the clustering coefficient of BA graphs is:

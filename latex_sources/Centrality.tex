@@ -13,7 +13,7 @@
     Degree centrality is the most straighforward centrality. It can be interpreted as a measure of importance, of popularity, e.g., the more friends I have in a social network, the more \textit{important} I am in this network.
 \end{textbox}
 
-
+%TODO only use the formula used in class
 \begin{textbox}{Farness - Closeness}
     The closeness of a node measures how close a node is from all other nodes, in term of shortest paths. To interpret it, we can make a parallel with a circle: the point which has the shortest average distance to all other points of the circle is its center. The node of highest closeness is the equivalent of the center of the circle for this graph. Its formulation is easily understood as the inverse of the farness.
 
@@ -39,7 +39,18 @@
 \end{textbox}
 
 
-\begin{textbox}{Centrality - Examples - 1}
+\begin{textbox}{Betweenness centrality}
+    The betweenness centrality measures how much the node plays the role of a bridge. The highest the betweenness, the more the node is essential to move quickly in the graph. More formally, the betweenness of $u$ is defined as the fraction of the shortest paths between all pairs of nodes in the graph (but $u$) that go through $u$. As a consequence, if we remove a node of high betweenness, many shortest paths will become longer, and the graph harder to navigate. The extreme situation is a node on the only path between otherwise disconnected components: if we remove this node, some nodes becomes unreachable from others. Those nodes thus tend to have high betweenness. It is defined as:
+
+    \[ C_{B}(v)=\sum _{s\neq v\neq t\in V}{\frac {\sigma _{st}(v)}{\sigma _{st}}}\]
+
+    with $\sigma _{st}$ the number of shortest paths between nodes $s$ and $t$ and $\sigma _{st}(v)$ the number of those paths passing through $v$.
+
+    The betweenness tends to grow with the network size. A normalized version can be obtained by dividing by the number of pairs of nodes, i.e., for a directed graph: $C_{B}^{\text{norm}}(v)=\frac{C_{B}(v)}{(N-1)(N-2)}$.
+\end{textbox}
+
+
+\begin{textbox}{Centrality - Examples}
     \begin{figure}[H]
         \begin{subfigure}{.5\textwidth}
             \includegraphics[width=\textwidth]{pics/exampleDegree.pdf}
@@ -58,24 +69,9 @@
             \includegraphics[width=\textwidth]{pics/exampleHarmonic.pdf}
             \caption{Harmonic Centrality}
         \end{subfigure}
-    \end{figure}
-\end{textbox}
-
-
-\begin{textbox}{Centrality - Examples - 2}
-    \begin{figure}[H]
         \begin{subfigure}{.5\textwidth}
             \includegraphics[width=\textwidth]{pics/examplebetweenness.pdf}
             \caption{Btwnness Centrality}
-        \end{subfigure}
-        \begin{subfigure}{.5\textwidth}
-            \includegraphics[width=\textwidth]{pics/exampleKatz.pdf}
-            \caption{Katz Centrality}
-        \end{subfigure}
-
-        \begin{subfigure}{.5\textwidth}
-            \includegraphics[width=\textwidth]{pics/exampleEigenvector.pdf}
-            \caption{Eigenvector Centrality}
         \end{subfigure}
         \begin{subfigure}{.5\textwidth}
             \includegraphics[width=\textwidth]{pics/examplepagerank.pdf}
@@ -85,59 +81,48 @@
 \end{textbox}
 
 
-\begin{textbox}{Betweenness centrality}
-    The betweenness centrality measures how much the node plays the role of a bridge. The highest the betweenness, the more the node is essential to move quickly in the graph. More formally, the betweenness of $u$ is defined as the fraction of the shortest paths between all pairs of nodes in the graph (but $u$) that go through $u$. As a consequence, if we remove a node of high betweenness, many shortest paths will become longer, and the graph harder to navigate. The extreme situation is a node on the only path between otherwise disconnected components: if we remove this node, some nodes becomes unreachable from others. Those nodes thus tend to have high betweenness. It is defined as:
+% \begin{textbox}{Eigenvector centrality}
+%     Eigenvector centrality is a recursive definition of importance: a node is important if it is connected to other important nodes. In practice, it is defined in the following way: the eigenvector centrality $C_u$ for every node $u$ of the graph is such that if each node \textit{sends} its centrality score to its neighbors, then the sum of scores received by each node will be equal to $\lambda C_u$ (with $\lambda$ a normalization constant). More formally,
 
-    \[ C_{B}(v)=\sum _{s\neq v\neq t\in V}{\frac {\sigma _{st}(v)}{\sigma _{st}}}\]
+%     \begin{equation}
+%         \centering
+%         C^{t+1}_u = \frac{1}{\lambda}\sum_{v\in N^{in}_u}C^t_v
+%         \label{eqpow}
+%     \end{equation}
+%     This recursive definition can be interpreted in term of eigenvectors and eigenvalues, which is defined as $Ax=\lambda x$, with $x$ an eigenvector, $\lambda$ the corresponding eigeinvalue. The eigenvector centrality is defined as the leading invector, i.e., the eigenvector associated with the highest eigenvalue, the only solution for which all centrality values are positive.
 
-    with $\sigma _{st}$ the number of shortest paths between nodes $s$ and $t$ and $\sigma _{st}(v)$ the number of those paths passing through $v$.
+%     A simple way to compute this eigenvalue is called the power method: one starts with random values on nodes, and iterate equation \ref{eqpow}. After some time, it can be proven that the values converge to the eigenvector centrality.
 
-    The betweenness tends to grow with the network size. A normalized version can be obtained by dividing by the number of pairs of nodes, i.e., for a directed graph: $C_{B}^{\text{norm}}(v)=\frac{C_{B}(v)}{(N-1)(N-2)}$.
-\end{textbox}
+%     \noindent\rule{4cm}{0.1pt}
 
-
-\begin{textbox}{Eigenvector centrality}
-    Eigenvector centrality is a recursive definition of importance: a node is important if it is connected to other important nodes. In practice, it is defined in the following way: the eigenvector centrality $C_u$ for every node $u$ of the graph is such that if each node \textit{sends} its centrality score to its neighbors, then the sum of scores received by each node will be equal to $\lambda C_u$ (with $\lambda$ a normalization constant). More formally,
-
-    \begin{equation}
-        \centering
-        C^{t+1}_u = \frac{1}{\lambda}\sum_{v\in N^{in}_u}C^t_v
-        \label{eqpow}
-    \end{equation}
-    This recursive definition can be interpreted in term of eigenvectors and eigenvalues, which is defined as $Ax=\lambda x$, with $x$ an eigenvector, $\lambda$ the corresponding eigeinvalue. The eigenvector centrality is defined as the leading invector, i.e., the eigenvector associated with the highest eigenvalue, the only solution for which all centrality values are positive.
-
-    A simple way to compute this eigenvalue is called the power method: one starts with random values on nodes, and iterate equation \ref{eqpow}. After some time, it can be proven that the values converge to the eigenvector centrality.
-
-    \noindent\rule{4cm}{0.1pt}
-
-    Eigenvector centrality cannot in general be computed on directed networks, because of source nodes, i.e., $k^{in}=0$. Those nodes have by definition an eigenvector centrality of 0 at t+1, and thus \textit{send} a value of 0 at t+2, which might in turn result in a score of 0 for its successors, and so on and so forth.
-\end{textbox}
+%     Eigenvector centrality cannot in general be computed on directed networks, because of source nodes, i.e., $k^{in}=0$. Those nodes have by definition an eigenvector centrality of 0 at t+1, and thus \textit{send} a value of 0 at t+2, which might in turn result in a score of 0 for its successors, and so on and so forth.
+% \end{textbox}
 
 
-\begin{textbox}{Katz centrality}
-    Katz centrality \footcite{katz1953new} is said to be a measure of the influence potential of a node. For a node $u$, it is defined as the sum, for all path length distance $\ell$, of the number of nodes located at distance exactly $\ell$ of $u$, discounted of a factor decreasing as $\ell$ increases. The intuition is that, the more nodes can be accessed in few steps, the higher the value. More formally, it is expressed as
-    \[
-        C_{\mathrm {Katz} }(u)=\sum _{\ell=1}^{\infty }\sum _{v=1}^{N}\alpha ^{\ell}(A^{\ell})_{vu}
-    \]
-    in which $(A^{\ell})_{vu}$ means the number of paths of length $\ell$ from $v$ to $u$, and $0< \alpha < \frac{1}{\lambda_{\max}}$ an attenuation parameter smaller than the reciprocal of the largest eigenvalue of $A$, to allow computation in matrix form.
-    %allowing to compute with matrix form:
-    %\[
-    % C_{\mathrm {Katz} }(u)=((I- \alpha A^T)^{-1}-I)\overrightarrow{I}
-    %\]
+% \begin{textbox}{Katz centrality}
+%     Katz centrality \footcite{katz1953new} is said to be a measure of the influence potential of a node. For a node $u$, it is defined as the sum, for all path length distance $\ell$, of the number of nodes located at distance exactly $\ell$ of $u$, discounted of a factor decreasing as $\ell$ increases. The intuition is that, the more nodes can be accessed in few steps, the higher the value. More formally, it is expressed as
+%     \[
+%         C_{\mathrm {Katz} }(u)=\sum _{\ell=1}^{\infty }\sum _{v=1}^{N}\alpha ^{\ell}(A^{\ell})_{vu}
+%     \]
+%     in which $(A^{\ell})_{vu}$ means the number of paths of length $\ell$ from $v$ to $u$, and $0< \alpha < \frac{1}{\lambda_{\max}}$ an attenuation parameter smaller than the reciprocal of the largest eigenvalue of $A$, to allow computation in matrix form.
+%     %allowing to compute with matrix form:
+%     %\[
+%     % C_{\mathrm {Katz} }(u)=((I- \alpha A^T)^{-1}-I)\overrightarrow{I}
+%     %\]
 
-    \vspace{0.25cm}
+%     \vspace{0.25cm}
 
-    Note that in a directed network, Katz centrality as presented here represents a \textit{vote} mechanism: a higher centrality of $u$ means that more nodes can reach $u$ quickly, and not that $u$ can reach many nodes quickly. We can inverse it by using $(A^{\ell})_{uv}$ instead of $(A^{\ell})_{vu}$
-\end{textbox}
+%     Note that in a directed network, Katz centrality as presented here represents a \textit{vote} mechanism: a higher centrality of $u$ means that more nodes can reach $u$ quickly, and not that $u$ can reach many nodes quickly. We can inverse it by using $(A^{\ell})_{uv}$ instead of $(A^{\ell})_{vu}$
+% \end{textbox}
 
 
-\begin{textbox}{Katz centrality and Eigenvector centrality}
-    Katz centrality can also be understood \footcite{newman2018networks} as a generalization of the eigenvector centrality, with a recursive definition, such as:
-    \[
-        C_{\mathrm {Katz} }(u) = \alpha \sum_{v\in N^{in}_u} C_{\mathrm {Katz} }(v) + \beta
-    \]
-    with $\beta=1$. We can see that with $\beta=0$ and $\alpha = 1/\lambda_{\max}$ Katz centrality is equivalent to the eigenvector centrality.
-\end{textbox}
+% \begin{textbox}{Katz centrality and Eigenvector centrality}
+%     Katz centrality can also be understood \footcite{newman2018networks} as a generalization of the eigenvector centrality, with a recursive definition, such as:
+%     \[
+%         C_{\mathrm {Katz} }(u) = \alpha \sum_{v\in N^{in}_u} C_{\mathrm {Katz} }(v) + \beta
+%     \]
+%     with $\beta=1$. We can see that with $\beta=0$ and $\alpha = 1/\lambda_{\max}$ Katz centrality is equivalent to the eigenvector centrality.
+% \end{textbox}
 
 
 \begin{textbox}{Pagerank centrality}
@@ -164,36 +149,36 @@
 \end{textbox}
 
 
-\begin{textbox}{Edge Structural indices}
-    Edges structural positions in the network can also be described using structural properties, most of them being similar to node centralities.
-\end{textbox}
+% \begin{textbox}{Edge Structural indices}
+%     Edges structural positions in the network can also be described using structural properties, most of them being similar to node centralities.
+% \end{textbox}
 
 
-\begin{textbox}{Edge Clustering}
-    \textbf{Edge Clustering} $C^e$ of an edge $(u,v)$ is the fraction of the neighbors of at least one of the two nodes which are neighbors of both of them, i.e.,
-    \[
-        C^e(u,v)=\frac{|N_u \cap N_v|}{|N_u \cup N_v|-2}
-    \]
-    High clustering edges are said \textit{Integrative}, low values edges are said \textit{Dispersive}.
-\end{textbox}
+% \begin{textbox}{Edge Clustering}
+%     \textbf{Edge Clustering} $C^e$ of an edge $(u,v)$ is the fraction of the neighbors of at least one of the two nodes which are neighbors of both of them, i.e.,
+%     \[
+%         C^e(u,v)=\frac{|N_u \cap N_v|}{|N_u \cup N_v|-2}
+%     \]
+%     High clustering edges are said \textit{Integrative}, low values edges are said \textit{Dispersive}.
+% \end{textbox}
 
 
-\begin{textbox}{Edge Betweenness}
-    \textbf{Edge betweenness} Is defined exactly as node betweenness, but counting shortest paths going through each edge instead of each node, i.e.,
-    \[ C_{B}(u,v)=\sum _{s\neq t\in V}{\frac {\sigma _{st}(u,v)}{\sigma _{st}}}\]
+% \begin{textbox}{Edge Betweenness}
+%     \textbf{Edge betweenness} Is defined exactly as node betweenness, but counting shortest paths going through each edge instead of each node, i.e.,
+%     \[ C_{B}(u,v)=\sum _{s\neq t\in V}{\frac {\sigma _{st}(u,v)}{\sigma _{st}}}\]
 
-    with $\sigma _{st}$ the number of shortest paths between nodes $s$ and $t$ and $\sigma _{st}(u,v)$ the number of those paths passing through edge $(u,v)$.
-\end{textbox}
-
-
-\input{parts/node_similarity}
+%     with $\sigma _{st}$ the number of shortest paths between nodes $s$ and $t$ and $\sigma _{st}(u,v)$ the number of those paths passing through edge $(u,v)$.
+% \end{textbox}
 
 
-\begin{textbox}{Going further}
-    Books on network science (see first CheatSheet) always introduce centralities.
+% \input{parts/node_similarity}
 
-    Survey on the topic:
-    \begin{itemize}
-        \item \cite{rodrigues2019network}
-    \end{itemize}
-\end{textbox}
+
+% \begin{textbox}{Going further}
+%     Books on network science (see first CheatSheet) always introduce centralities.
+
+%     Survey on the topic:
+%     \begin{itemize}
+%         \item \cite{rodrigues2019network}
+%     \end{itemize}
+% \end{textbox}

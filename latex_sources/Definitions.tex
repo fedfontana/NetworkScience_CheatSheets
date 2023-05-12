@@ -5,7 +5,8 @@
 
 
 \begin{textbox}{Networks: Graph notation}
-    Graph notation : $G=(V,E)$
+    Graph notation: $G=(V,E)$
+
     \begin{tabular}{p{0.2\textwidth}|p{0.8\textwidth}}\scriptsize
         $V$           & set of vertices/nodes. \\
         $E$           & set of edges/links.    \\
@@ -53,7 +54,7 @@
             \]
             \[
                 \begin{split}
-                    E=\{(1, 2),
+                E=\{(1, 2),
                     (1, 6),\\
                     (1, 5),
                     (2, 4),
@@ -79,20 +80,19 @@
 
     \noindent\rule{4cm}{0.1pt}
 
-    \tiny{
-        Other types of graphs (multigraphs, multipartite, hypergraphs, etc.) are introduced later}
+    \tiny{Other types of graphs (multigraphs, multipartite, hypergraphs, etc.) are introduced later}
 \end{textbox}
 
 
 \begin{textbox}{Counting nodes and edges}
     \begin{tabular}{p{0.07\textwidth}|p{0.8\textwidth}}\scriptsize
         $N,n$     & \textbf{size}: number of nodes $|V|$. \\
-
         $L,m$     & number of edges $|E|$                 \\
-        $L_{max}$ & Maximum number of links
-        \[  \text{Undirected network: } {N\choose 2 }=N(N-1)/2
-        \]
-        \[
+        $L_{max}$ & Maximum number of links  \\
+        \textbf{} & \[  
+            \text{Undirected network: } {N\choose 2 }=N(N-1)/2
+        \] \\ 
+        \textbf{} & \[
             \text{Directed network: }=N(N-1)
         \]
     \end{tabular}
@@ -128,8 +128,8 @@
         \[\langle k \rangle=\frac{2m}{n}\]                                                              \\
 
         $d,d(G)$            & \textbf{Density}: Fraction of pairs of nodes connected by an edge in $G$.
-
-        \[d=L/L_{\max}
+        \[
+            d=\frac{L}{L_{\max}}
         \]                                                                                              \\
     \end{tabular}
 \end{textbox}
@@ -154,8 +154,7 @@
 
 \begin{textbox}{Network descriptors - Paths}
     \begin{tabular}{p{0.07\textwidth}|p{0.8\textwidth}}\scriptsize
-        $\ell_{\max}$          & \textbf{Diameter}: maximum \textit{distance} between any pair of nodes. \\
-
+        $\ell_{\max}$          & \textbf{Diameter}: maximum shortest path length between any pair of nodes. \\
         $\langle \ell \rangle$ & \textbf{Average distance}:
         \[
             \langle \ell \rangle = \frac{1}{n(n-1)}\sum_{i\neq j} \ell_{ij}
@@ -283,12 +282,12 @@
 \end{textbox}
 
 
-\begin{textbox}{Going Further}
-    Books about network science as a whole:
-    \begin{itemize}
-        \item\cite{barabasi2016network} (free)
-        \item \cite{coscia2021atlas} (free)
-        \item \cite{zinoviev2018complex}
-        \item \cite{menczer2020first}
-    \end{itemize}
-\end{textbox}
+% \begin{textbox}{Going Further}
+%     Books about network science as a whole:
+%     \begin{itemize}
+%         \item\cite{barabasi2016network} (free)
+%         \item \cite{coscia2021atlas} (free)
+%         \item \cite{zinoviev2018complex}
+%         \item \cite{menczer2020first}
+%     \end{itemize}
+% \end{textbox}

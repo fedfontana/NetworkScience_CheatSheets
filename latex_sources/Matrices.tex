@@ -41,26 +41,44 @@
 \end{textbox}
 
 
-\begin{textbox}{Spectral properties of $A$}
-  \textbf{Spectral Graph Theory} is a whole field in itself, and beyond the scope of this class. A few elements for those with a \textit{linear algebra} background:
+% \begin{textbox}{Spectral properties of $A$}
+%   \textbf{Spectral Graph Theory} is a whole field in itself, and beyond the scope of this class. A few elements for those with a \textit{linear algebra} background:
 
-  \begin{itemize}
-    \item The adjacency matrix of an undirected simple graph is symmetric, and therefore has a complete set of real eigenvalues and an orthogonal eigenvector basis.
-    \item The set of eigenvalues of a graph is the spectrum of the graph.
-    \item The $n$ eigenvalues are denoted as $\lambda_0 \leq \lambda_1 \leq \lambda_2 \leq \dots \lambda_{\max}$
-    \item The largest eigenvalue $\lambda_{\max}$ lies between the average and maximum degrees.
-    \item In a large, sparse random graph, $\lambda_{\max}\approx \langle k \rangle$
-    \item The number of closed walks of length $k$ in $G$ equals $\sum^n_{i=0} \lambda^k_i$
-    \item A graph is bipartite if and only if its spectrum is symmetric (i.e., if $\lambda$ is an eigenvalue, then so is $-\lambda$
-    \item If $G$ is connected, then the diameter of $G$ is strictly less than its number of distinct eigenvalues
-  \end{itemize}
-\end{textbox}
+%   \begin{itemize}
+%     \item The adjacency matrix of an undirected simple graph is symmetric, and therefore has a complete set of real eigenvalues and an orthogonal eigenvector basis.
+%     \item The set of eigenvalues of a graph is the spectrum of the graph.
+%     \item The $n$ eigenvalues are denoted as $\lambda_0 \leq \lambda_1 \leq \lambda_2 \leq \dots \lambda_{\max}$
+%     \item The largest eigenvalue $\lambda_{\max}$ lies between the average and maximum degrees.
+%     \item In a large, sparse random graph, $\lambda_{\max}\approx \langle k \rangle$
+%     \item The number of closed walks of length $k$ in $G$ equals $\sum^n_{i=0} \lambda^k_i$
+%     \item A graph is bipartite if and only if its spectrum is symmetric (i.e., if $\lambda$ is an eigenvalue, then so is $-\lambda$
+%     \item If $G$ is connected, then the diameter of $G$ is strictly less than its number of distinct eigenvalues
+%   \end{itemize}
+% \end{textbox}
 
 
-\begin{textbox}{Graph Laplacian}
-  The \textbf{Graph Laplacian}, or \textbf{Laplacian Matrix} of a graph is a variant of the Adjacency matrix, often used in \textit{Spectral Graph Theory}.
+% \begin{textbox}{Graph Laplacian}
+%   The \textbf{Graph Laplacian}, or \textbf{Laplacian Matrix} of a graph is a variant of the Adjacency matrix, often used in \textit{Spectral Graph Theory}.
 
-  It is defined as $D-A$, with $D$ the \textit{Degree matrix} of the graph, defined as a $N \times N$ matrix with $D_{ii}=k_i$ and zeros everywhere else.
+%   It is defined as $D-A$, with $D$ the \textit{Degree matrix} of the graph, defined as a $N \times N$ matrix with $D_{ii}=k_i$ and zeros everywhere else.
+% \end{textbox}
+
+% \begin{textbox}{Laplace Operator}
+%   Intuitively, the Laplace operator is a generalization of the second derivative, and is defined in discrete situations (discrete Laplace operator), for each element, as the sum of differences between the element and its "neighbors". e.g. In a B\&W picture, it's the difference between the greylevel on current pixel and the greylevel of 4 or 8 closest pixels, and it performs \textit{edge detection}. On a graph, with $W$ a column vector representing values on nodes, $LW$ computes for each node the difference to neighbors.
+% \end{textbox}
+
+
+% \begin{textbox}{Spectral properties of $L$}
+%   Eigenvalues of the Laplacian have many applications, such as \textit{spectral clustering}, \textit{graph matching}, \textit{embedding}, etc. Assuming $G$ undirected with eigenvalues $\lambda_0 \leq \lambda_1 \leq \lambda_2 \leq \dots \lambda_n$, here are some interesting properties:
+%   \begin{itemize}
+%     \item The smallest eigenvalue $\lambda_i$ equals 0
+%     \item The number of 0 eigenvalues gives the number of connected components
+%   \end{itemize}
+% \end{textbox}
+
+
+\begin{textbox}{Random Walk matrix}
+  Another useful matrix of a graph is the \textbf{Random Walk Transition Matrix} $R$. It is the column normalized version of the adjacency matrix. $R_{ij}$ can be understood as the probability for a random walker located on node $i$ to move to $j$.
 \end{textbox}
 
 
@@ -96,7 +114,8 @@
     \begin{subbox}{white}{\textcolor{black}{$A$ - Adjacency Mat.}}
       \centering
       \footnotesize
-      \[\begin{pmatrix}
+      \[
+        \begin{pmatrix}
           0 & 1 & 0 & 0 & 1 & 1 \\
           1 & 0 & 1 & 1 & 1 & 1 \\
           0 & 1 & 0 & 1 & 0 & 0 \\
@@ -106,37 +125,34 @@
         \end{pmatrix}
       \]
     \end{subbox}
-
-    \begin{subbox}{white}{\textcolor{black}{$D$ - Degree Matrix}}
-      \centering
-      \footnotesize
-      \[\begin{pmatrix}
-          3 & 0 & 0 & 0 & 0 & 0 \\
-          0 & 5 & 0 & 0 & 0 & 0 \\
-          0 & 0 & 2 & 0 & 0 & 0 \\
-          0 & 0 & 0 & 2 & 0 & 0 \\
-          0 & 0 & 0 & 0 & 5 & 0 \\
-          0 & 0 & 0 & 0 & 0 & 3
-        \end{pmatrix}
-      \]
-    \end{subbox}
-    
-    \begin{subbox}{white}{\textcolor{black}{$L$ - Laplacian }}
-      \centering
-      \footnotesize
-      \[
-        \setlength\arraycolsep{1pt}
-        \begin{pmatrix}
-          3  & -1 & 0  & 0  & -1 & -1 \\
-          -1 & 5  & -1 & -1 & -1 & -1 \\
-          0  & -1 & 2  & -1 & 0  & 0  \\
-          0  & -1 & -1 & 2  & 0  & 0  \\
-          -1 & -1 & 0  & 0  & 4  & -1 \\
-          -1 & -1 & 0  & 0  & -1 & 3
-        \end{pmatrix}
-      \]
-    \end{subbox}
-    
+    % \begin{subbox}{white}{\textcolor{black}{$D$ - Degree Matrix}}
+    %   \centering
+    %   \footnotesize
+    %   \[\begin{pmatrix}
+    %       3 & 0 & 0 & 0 & 0 & 0 \\
+    %       0 & 5 & 0 & 0 & 0 & 0 \\
+    %       0 & 0 & 2 & 0 & 0 & 0 \\
+    %       0 & 0 & 0 & 2 & 0 & 0 \\
+    %       0 & 0 & 0 & 0 & 5 & 0 \\
+    %       0 & 0 & 0 & 0 & 0 & 3
+    %     \end{pmatrix}
+    %   \]
+    % \end{subbox}
+    % \begin{subbox}{white}{\textcolor{black}{$L$ - Laplacian }}
+    %   \centering
+    %   \footnotesize
+    %   \[
+    %     \setlength\arraycolsep{1pt}
+    %     \begin{pmatrix}
+    %       3  & -1 & 0  & 0  & -1 & -1 \\
+    %       -1 & 5  & -1 & -1 & -1 & -1 \\
+    %       0  & -1 & 2  & -1 & 0  & 0  \\
+    %       0  & -1 & -1 & 2  & 0  & 0  \\
+    %       -1 & -1 & 0  & 0  & 4  & -1 \\
+    %       -1 & -1 & 0  & 0  & -1 & 3
+    %     \end{pmatrix}
+    %   \]
+    % \end{subbox} 
     \begin{subbox}{white}{\textcolor{black}{ $A^2$}}
       \centering
       \footnotesize
@@ -150,7 +166,6 @@
         \end{pmatrix}
       \]
     \end{subbox}
-    
     \begin{subbox}{white}{\textcolor{black}{ Random W. mat.}}
       \centering
       \footnotesize
@@ -169,31 +184,12 @@
 \end{textbox}
 
 
-\begin{textbox}{Laplace Operator}
-  Intuitively, the Laplace operator is a generalization of the second derivative, and is defined in discrete situations (discrete Laplace operator), for each element, as the sum of differences between the element and its "neighbors". e.g. In a B\&W picture, it's the difference between the greylevel on current pixel and the greylevel of 4 or 8 closest pixels, and it performs \textit{edge detection}. On a graph, with $W$ a column vector representing values on nodes, $LW$ computes for each node the difference to neighbors.
-\end{textbox}
-
-
-\begin{textbox}{Spectral properties of $L$}
-  Eigenvalues of the Laplacian have many applications, such as \textit{spectral clustering}, \textit{graph matching}, \textit{embedding}, etc. Assuming $G$ undirected with eigenvalues $\lambda_0 \leq \lambda_1 \leq \lambda_2 \leq \dots \lambda_n$, here are some interesting properties:
-  \begin{itemize}
-    \item The smallest eigenvalue $\lambda_i$ equals 0
-    \item The number of 0 eigenvalues gives the number of connected components
-  \end{itemize}
-\end{textbox}
-
-
-\begin{textbox}{Random Walk matrix}
-  Another useful matrix of a graph is the \textbf{Random Walk Transition Matrix} $R$. It is the column normalized version of the adjacency matrix. $R_{ij}$ can be understood as the probability for a random walker located on node $i$ to move to $j$.
-\end{textbox}
-
-
-\begin{textbox}{Going Further}
-  \begin{itemize}
-    \item Introduction to spectral graph theory (\cite{nica2016brief})
-    \item Survey on Graph Spectral Theory (\cite{spielman2012spectral})
-    \item Book on Graph Spectral Theory (\cite{chung1997spectral})
-    \item Spectral graph Clustering (\cite{nascimento2011spectral})
-    \item Wavelets on graph (\cite{hammond2011wavelets})
-  \end{itemize}
-\end{textbox}
+% \begin{textbox}{Going Further}
+%   \begin{itemize}
+%     \item Introduction to spectral graph theory (\cite{nica2016brief})
+%     \item Survey on Graph Spectral Theory (\cite{spielman2012spectral})
+%     \item Book on Graph Spectral Theory (\cite{chung1997spectral})
+%     \item Spectral graph Clustering (\cite{nascimento2011spectral})
+%     \item Wavelets on graph (\cite{hammond2011wavelets})
+%   \end{itemize}
+% \end{textbox}
