@@ -10,14 +10,13 @@
   \textbf{$M_{ij}$} is a notation representing the element on \textbf{row} $i$ and \textbf{column} $j$.
 
   %\centering
-
   %\includegraphics[width=0.5\textwidth]{Matris.png}
   %\textbf{Indices in a matrix}
 \end{textbox}
 
+
 \begin{textbox}{$A$ - Adjacency matrix}
   The most natural way to represent a graph as a matrix is called the Adjacency matrix $A$. It is defined as a square matrix, such as the number of rows (and the number of columns) is equal to the number of nodes $N$ in the graph. Nodes of the graph are numbered from 1 to $N$, and there is an edge between nodes $i$ and $j$ if the corresponding position of the matrix $A_{ij}$ is not $0$.
-
   \begin{itemize}
     \item A value on the diagonal means that the corresponding node has a \textbf{self-loop}
     \item the graph is \textbf{undirected}, the matrix is \textbf{symmetric}: $A_{ij}=A_{ji}$ for any $i,j$.
@@ -36,8 +35,8 @@
   \textbf{Multiplying} $A$ by \textbf{itself} allows to know the number of walks of a given length that exist between any pair of nodes: $A^2_{ij}$ corresponds to the number of walks of length 2 from node $i$ to node $j$, $A^3_{ij}$ to the number of walks of length 3, etc.
 \end{textbox}
 
-\begin{textbox}{Multiplying $A$ by a column vector}
 
+\begin{textbox}{Multiplying $A$ by a column vector}
   \textbf{Multiplying} $A$ by a \textbf{column vector} $W$ of length $1\times N$ can be thought as setting the $i$ th value of the vector to the $i$th node, and each node \textit{sending} its value to its neighbors (for undirected graphs). The result is a column vector with $N$ elements, the $i$th element corresponding to the sum of the values of its neighbors in $W$. This is convenient when working with \textbf{random walks} or \textbf{diffusion} phenomenon.
 \end{textbox}
 
@@ -108,7 +107,6 @@
       \]
     \end{subbox}
 
-
     \begin{subbox}{white}{\textcolor{black}{$D$ - Degree Matrix}}
       \centering
       \footnotesize
@@ -122,6 +120,7 @@
         \end{pmatrix}
       \]
     \end{subbox}
+    
     \begin{subbox}{white}{\textcolor{black}{$L$ - Laplacian }}
       \centering
       \footnotesize
@@ -137,6 +136,7 @@
         \end{pmatrix}
       \]
     \end{subbox}
+    
     \begin{subbox}{white}{\textcolor{black}{ $A^2$}}
       \centering
       \footnotesize
@@ -150,6 +150,7 @@
         \end{pmatrix}
       \]
     \end{subbox}
+    
     \begin{subbox}{white}{\textcolor{black}{ Random W. mat.}}
       \centering
       \footnotesize
@@ -169,7 +170,6 @@
 
 
 \begin{textbox}{Laplace Operator}
-
   Intuitively, the Laplace operator is a generalization of the second derivative, and is defined in discrete situations (discrete Laplace operator), for each element, as the sum of differences between the element and its "neighbors". e.g. In a B\&W picture, it's the difference between the greylevel on current pixel and the greylevel of 4 or 8 closest pixels, and it performs \textit{edge detection}. On a graph, with $W$ a column vector representing values on nodes, $LW$ computes for each node the difference to neighbors.
 \end{textbox}
 
@@ -185,17 +185,15 @@
 
 \begin{textbox}{Random Walk matrix}
   Another useful matrix of a graph is the \textbf{Random Walk Transition Matrix} $R$. It is the column normalized version of the adjacency matrix. $R_{ij}$ can be understood as the probability for a random walker located on node $i$ to move to $j$.
-
 \end{textbox}
+
 
 \begin{textbox}{Going Further}
   \begin{itemize}
     \item Introduction to spectral graph theory (\cite{nica2016brief})
     \item Survey on Graph Spectral Theory (\cite{spielman2012spectral})
-
     \item Book on Graph Spectral Theory (\cite{chung1997spectral})
     \item Spectral graph Clustering (\cite{nascimento2011spectral})
     \item Wavelets on graph (\cite{hammond2011wavelets})
-
   \end{itemize}
 \end{textbox}

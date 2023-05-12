@@ -3,9 +3,11 @@
     \Large{\textbf{Scale-Free Networks}}
 \end{subbox}
 
+
 \begin{textbox}{Scale-Free: Definition}
     A network is said to be \textbf{Scale-Free} when its degree distribution follows a Power-Law distribution, or can be approximated by a Power-Law distribution.
 \end{textbox}
+
 
 \begin{textbox}{Power-Law (PL)- Approximate Distribution}
     A \textbf{Power-Law distribution} is defined as follows:
@@ -44,6 +46,7 @@
     \]
 \end{textbox}
 
+
 \begin{textbox}{Power-Law - Plotting}
     A famous property of the Power-Law distribution is that it looks like a line when plotted in a log-log plot, i.e., a plot in which the x-axis (degrees) and the y-axis (frequency of degrees) are represented using a logarithmic scale.
     \begin{center}
@@ -73,12 +76,10 @@
         \includegraphics[width=0.8\textwidth]{pics/SF-poisson.png}
 
         Comparing power-law with Exponential distributions
-
-
         \includegraphics[width=0.8\textwidth]{pics/SF-exponential.png}
-
     \end{center}
 \end{textbox}
+
 
 \begin{textbox}{SF networks - universality}
     Scale-Free networks are widely studied because they are considered to be very frequent in the real world. Some important papers discovered the existence of Power-Law degree distribution in a variety of large real networks, notably:
@@ -89,9 +90,9 @@
         \item Scientific collaborations (\cite{newman2001structure})
         \item Romantic interactions (\cite{liljeros2001web})
     \end{enumerate}
-
     It must be noted, however, that many real world networks \textbf{are not scale-free}. A typical counter-example is a road-network, in which nodes correspond to intersection and edges to roads: for practical reasons, intersections with large degrees do not make sense.
 \end{textbox}
+
 
 \begin{textbox}{Why is it called \textit{scale free}}
     Because they have no (typical) scale!
@@ -114,6 +115,7 @@
     \end{enumerate}
 \end{textbox}
 
+
 \begin{textbox}{Divergence in practice}
     In practice, one can always compute the mean and variance of a provided, observed degree distribution. So what does it mean that they \textit{diverge}?
 
@@ -122,9 +124,11 @@
     But in a power law, moments are \textbf{dominated} by the largest values in the long tail: some rare values are \textit{so large} that they shift the moments. So the more data we observe, the higher the moments.
 \end{textbox}
 
+
 \begin{textbox}{Divergence: consequences}
     The consequence of diverging moments is that \textbf{if the distribution follows a power law}, then if the exponent is below 2, you should now rely on the mean degree or the variance. If the exponent is between 2 and 3, you can (relatively) rely on the mean, but not on the variance. Be careful though, even if $\alpha>2$, the mean converges slowly, i.e., you need a very large sample for your mean to be close to the real value.
 \end{textbox}
+
 
 \begin{textbox}{Fitting power laws}
     When confronted with a power law degree distribution, we might want to \textbf{fit} the distribution, i.e., to \textbf{find the exponent} of the distribution. A naive and simple way to do it is to plot the distribution on a log-log plot and to find the slope of the line, either graphically or through least-square regression on the log-transformed values of degrees and frequencies.
@@ -134,11 +138,13 @@
     The most appropriate method is to use Maximum Likelihood Estimation (MLE\footnote{https://towardsdatascience.com/a-gentle-introduction-to-maximum-likelihood-estimation-9fbff27ea12f}), taking into account min and max-boundaries, as described in \footcite{goldstein2004problems}
 \end{textbox}
 
+
 \begin{textbox}{Exponent limits}
     In real networks, we consider that we should have $\alpha\geq2$, because a lower exponent would mean that the distribution is so skewed that we expect to find nodes with a degree larger than the size of the network.
 
     Furthermore, if the exponent is too large, large degree nodes becomes so rare, that the network would need to be enormous to observe such a node. For instance, with $\alpha=5$, we need to observe $N=10^{12}$ nodes to expect to observe a single node of size 1000.
 \end{textbox}
+
 
 \begin{textbox}{Exponent and shortest-paths}
     Random networks with Poisson degree distribution already have a \textit{short average distance}. However, it is possible to define classes of networks with even smaller average distance based on the exponent $\alpha$:
@@ -150,9 +156,11 @@
     \end{itemize}
 \end{textbox}
 
+
 \begin{textbox}{Scale-free network controversy}
     There is an on-going debate in the network science community over the prevalence of scale-free networks. For some authors \footcite{barabasi2003scale}, most real networks follow to some extent a power-law degree distribution, while, for some others, scale-free networks are rare \footcite{broido2019scale}. The controversy has been studied\footcite{jacomy2020epistemic} and can be interpreted as differences between scientific approaches: one popular among (some) physicists (\textit{scale-freeness is the sign of a universal law}) and another one common among statisticians \textit{(scale-freeness is an empirical characterization)}.
 \end{textbox}
+
 
 \begin{textbox}{SF networks: what to do}
     Is your network Scale-Free? The first question you might ask yourself is: \textit{why do you need to know?}.

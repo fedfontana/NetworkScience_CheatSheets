@@ -3,9 +3,11 @@
     \Large{\textbf{Community Structure}}
 \end{subbox}
 
+
 \begin{textbox}{Blocks and Communities: Definition}
     The general idea of blocks and communities is that nodes of a network can be grouped together in homogeneous sets, based on the network topology. The problem of automatically discovering those groups is one of the most studied problem of network science, but also one of the most difficult to properly define.
 \end{textbox}
+
 
 \begin{textbox}{Partitions/Overlap}
     We must differentiate two types of node grouping:
@@ -16,11 +18,13 @@
     Algorithms looking for partitions are much more common than those searching for overlapping groups, due to the increased complexity of the later task. Overlapping community detection is, nevertheless, an active field of research.
 \end{textbox}
 
+
 \begin{textbox}{Community structure}
     The idea of having a network structured in \textbf{communities} is defined as an analogy with communities in social networks. Communities are therefore defined (informally) as groups of nodes that are strongly connected between themselves (\textbf{high internal density}) and more weakly connected to the rest of the network (\textbf{low external density}).
 
     This definition however cannot be translated unambiguously into a mathematical formulation. The problem of \textbf{community detection}, or community discovery, is therefore complex to define.
 \end{textbox}
+
 
 \begin{textbox}{Block structure}
     The general idea of the block structure is that the probability to observe an edge between two nodes is a function of the blocks they belong to. Contrary to communities, no assumption is made \textit{a priori} about the respective values of those probabilities: \textbf{they can be high between nodes belonging to the same blocks or to different blocks}, and can \textbf{differ for each pair of block}.
@@ -28,9 +32,9 @@
     % A  a random graph model, related to the ER random model, known as the \textbf{Stochastic block model}. 
 \end{textbox}
 
+
 \begin{textbox}{Definition}
     \begin{tabular}{p{0.08\textwidth}|p{0.8\textwidth}}\scriptsize
-
         $C$   & a \textit{community partition}, or, more generally, a set of set of nodes \\
         $c_i$ & community $i$, a set of nodes                                             \\
     \end{tabular}
@@ -39,7 +43,6 @@
 
 \begin{textbox}{Modularity}
     The most famous quality function to measure the \textit{quality} of partitions is the \textbf{Modularity}. Introduced in \footcite{girvan2002community}, it is defined for a partition $C$ and a graph $G$ as the difference between the fraction of observed internal edges and the expected fraction of internal edges if $G$ were rewired according to a configuration model, i.e., preserving the degrees of nodes.
-
     \[
         Q=\frac{1}{2L}\sum_{uv}\left[ A_{uv}-\frac{k_uk_v}{2L}\right] \delta(c_u,c_v)
     \]
@@ -50,6 +53,7 @@
     \]
     with $L_{i}=L(H(c_i))$ the number of edges inside community $i$ and $K_i=\sum_{u \in c_i}k_u$ the sum of degrees of nodes in community $i$.
 \end{textbox}
+
 
 \begin{textbox}{Modularity: null model}
     The modularity as expressed above compares the number of edges inside communities to the expected number of edges in a \textbf{null model}, i.e., a randomized version of the graph. In the original version, this null model is the \textbf{configuration model} (as easily recognized in the $\frac{k_uk_v}{2L}$ of the original formula).
@@ -68,13 +72,16 @@
     Examples of networks with 20(left) and 26(right) cliques of size 5. Colors represent communities found by a modularity maximization algorithm.
 \end{textbox}
 
+
 \begin{textbox}{Modularity and random networks}
     Another well known limitation of a Modularity maximization approach is that it finds communities with high scores in random networks: since it is not \textit{adjusted for chance}, random flucutations in a random network are mistaken for meaningful structure in the network.
 \end{textbox}
 
+
 \begin{textbox}{Multi-resolution Modularity}
     A simple solution has been proposed to the limit of resolution, consisting in adding a resolution parameter $\lambda$ to \textit{tune} the desired resolution\footcite{reichardt2006statistical}, i.e., $(L_{i}-\frac{1}{2}K_i^2)$ becomes $(L_{i}-\lambda \frac{1}{2}K_i^2)$. It raises or shrinks the expected number of edges inside communities. It requires, however, to choose a proper value for $\lambda$, i.e., to choose arbitrarily a scale for communities.
 \end{textbox}
+
 
 \begin{textbox}{Mod. maximization: Girvan Newman}
     Several of the most popular community detection algorithms have as objective to discover the partition of highest modularity. This is a difficult problem, and thus existing approaches are based on heuristics.
@@ -84,6 +91,7 @@
     \centering
     \includegraphics[width=0.7\textwidth]{pics/dendrogram.jpg}
 \end{textbox}
+
 
 \begin{textbox}{Mod. maximization: Louvain method}
     The Louvain method\footcite{blondel2008fast} is certainly the most used method for community detection. Its objective is to optimize the modularity using a greedy, agglomerative approach:
@@ -110,11 +118,13 @@
     The result of Louvain algorithm is a \textbf{hierarchy} of communities.
 \end{textbox}
 
+
 % \begin{textbox}{Louvain Algorithm}
 % Illustration of the Louvain algorithm from \footcite{traag2019louvain}
 % \centering
 % \includegraphics[width=0.99\textwidth]{pics/louvain.pdf}
 % \end{textbox}
+
 
 \begin{textbox}{Louvain method strengths and weaknesses}
     The main reason explaining the popularity of the Louvain method to this day is its
@@ -124,6 +134,7 @@
 
     However, it has also be shown in \footcite{traag2019louvain} that the greedy nature of the algorithm could lead to having counter-intuitive structures, such as disconnected communities. The authors of  the paper proceed to introduce a variant of the algorithm called Leiden, solving this problem.
 \end{textbox}
+
 
 \begin{textbox}{Infomap}
     Infomap\footcite{rosvall2008maps} is a method based on an objective function different from the Modularity. Its objective is to \textbf{Minimize the description length of an average random walk} in the network, i.e. maximize the \textbf{compression} of the description of such a walk. More formally, the code length to minimize for partition $C$ is described as:
@@ -138,11 +149,13 @@
     Several improvements have been proposed, for instance to discover hierarchical partitions.
 \end{textbox}
 
+
 \begin{textbox}{Infomap Algorithm intuition}
     Illustration of the intuition behind Infomap random walk compression. For a more accurate depiction, check the excellent illustration by the authors\footcite{rosvall2008maps}. The real encoding length is not computed explicitly, but estimated for an infinite random walk based on information theory principles.
     \centering
     \includegraphics[width=0.99\textwidth]{pics/infomap.pdf}
 \end{textbox}
+
 
 \begin{textbox}{Stochastic Block Models (SBM)}
     A stochastic block model is a random graph model defined by:
@@ -157,6 +170,7 @@
     \end{tabular}
 \end{textbox}
 
+
 \begin{textbox}{SBM inference}
     The objective of a community/block detection algorithm based on the SBM principle is thus to perform \textbf{SBM inference}, i.e., to find the parameters of the SBM that best explain the observed graph, usually in term of maximizing the likelihood. Said differently, we search --among a certain class of models-- the model that has the highest probability to generate the observed graph. Note that for an observed graph, for each partition in blocks $b$, there is a single block matrix $E$ that is relevant to consider, that can be found simply by counting the number of edges actually present between blocks in the graph.
 
@@ -166,6 +180,7 @@
     \]
 \end{textbox}
 
+
 \begin{textbox}{SBM: Simple Graphs}
     Assuming a simple graph, the probability to observe a graph $A$ given a partition $b$ is computed as the product, for each pair of node, of the probability to obtain the observed situation: edge or no-edges. It uses a Bernouilli distribution.
     \[
@@ -174,6 +189,7 @@
     \]
 \end{textbox}
 
+
 \begin{textbox}{SBM: Poisson}
     Other assumptions on the distribution can be made. For scalability reasons, a common one is to assume a poisson distribution of edges
     \[
@@ -181,6 +197,7 @@
     \]
     Assuming that $A$ is sparse, Poisson or Bernouilli tends toward the same results for large graphs.
 \end{textbox}
+
 
 \begin{textbox}{DC-SBM: Degree Correction}
     Much as the Modularity null model preserving nodes degrees, modern SBM usually integrate a degree correction
@@ -208,19 +225,20 @@
     \]
 \end{textbox}
 
+
 \begin{textbox}{SBM: number of blocks}
     As defined until now, the inference has a trivial solution: each node being in its own block, and $A=E$. The probability of such a model to generate the observed graph is maximal (1 for simple graphs).
 
     The solution to this problem is often to fix the number of blocks. This approach is not satisfying in the general case, when we do not know the expected number of blocks.
 \end{textbox}
 
+
 \begin{textbox}{SBM: infer the number of blocks}
     More recently, approaches\footcite{peixoto2019bayesian} have been proposed to infer also automatically the number of blocks. They adopt an approach from Information Theory called the Minimum Description Length (MDL), whose principle is to find the description which reduces the total cost of describing a graph, by minimizing both 1)The quantity of information needed to encode the graph, knowing that it is generated by a given model, and 2)The quantity of information needed to encode the model itself. Intuitively, a model with few blocks requires little information to be described, contrary to a model with many blocks. But a model with many blocks is more \textbf{constrained}, the graphs it generates are more \textit{specific}, and therefore can be described at a lesser cost, knowing the model.
-
 \end{textbox}
 
-\begin{textbox}{SBM infering blocks: equation}
 
+\begin{textbox}{SBM infering blocks: equation}
     More formally, we can decompose the probability of observing a graph and a model as:
     \[
         P(A|b)= P(A|\theta, E, b) P(\theta|E, b) P(E|b)P (b)
@@ -232,6 +250,7 @@
         b:=\argmin_{b} - log_2 P(\theta,E,b) - log_2 P(A|\theta,E,b)
     \]
 \end{textbox}
+
 
 \begin{textbox}{Variants of the SBM}
     Group inference using SBM is a very active field of research, and many variants have been proposed, including degree-corrected, nested, Overlapping, Mixed membership SBM, etc.
@@ -254,6 +273,7 @@
     Internal evaluation can be used to evaluate the quality of communities found on a network of interest, while External evaluation is mostly used to asses the quality of algorithms on benchmarks.
 \end{textbox}
 
+
 \begin{textbox}{Internal Evaluation - Global}
     Objective quality function themselves can be understood as different \textbf{definitions of community structures}. While some methods try directly to optimize one of those quality functions, some other methods are based on different principles (e.g., clique-based communities, consensus reaching based on game-theory, etc.). Quality functions can therefore be used a posteriori to assess the quality of a partition.
 
@@ -263,7 +283,6 @@
         \item \textbf{Description lenght}, as in Infomap or SBM
         \item \textbf{Surprise} \footcite{aldecoa2013surprise} evaluates the departure of the observed partition from the expected distribution of nodes and links into communities given a null model.
     \end{itemize}
-
 \end{textbox}
 
 
@@ -276,6 +295,7 @@
         \item \textbf{Scaled density}, the ratio of the node density to the total graph density
     \end{itemize}
 \end{textbox}
+
 
 \begin{textbox}{External Evaluation}
     Partitions obtained by a given method can be compared with a ground truth. This approach is used on real networks, with a ground truth coming from metadata (e.g., classes in a network of social interactions between students), and on synthetic networks, with communities known by construction.
@@ -299,6 +319,7 @@
     A large number of methods have nevertheless been proposed\footcite{xie2013overlapping}. Extensions of non-overlapping quality functions have been proposed, such as the overlapping Modularity \footcite{nicosia2009extending}, or overlapping NMI \footcite{mcdaid2011normalized}, but they are not as widely used as their more constrained counterparts.
 \end{textbox}
 
+
 \begin{textbox}{Other meso-scale structures}
     Beyond the usual community structure, other types of network structural organizations have been proposed and studied. Some of the most widely known are:
     \begin{itemize}
@@ -314,56 +335,46 @@
 \begin{textbox}{Meso-scale organization -1}
     Examples of different types of organization that can be obtained using block structure
 
-
     \centering
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/assortBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/assortativeG.png}
-
     \textbf{(1) Assortative Structure}
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/anti_assortBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/anti_assortG.png}
-
-    \textbf{(2) Disassortative Structure
-    }
+    \textbf{(2) Disassortative Structure}
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/corePBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/corePG.png}
-
-    \textbf{(3) Core Periphery Structure
-    }
+    \textbf{(3) Core Periphery Structure}
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/hierBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/hierG.png}
-
-    \textbf{(4) Hierarchical Structure
-    }
+    \textbf{(4) Hierarchical Structure}
 \end{textbox}
 
 
 \begin{textbox}{Meso-scale organization -2}
     \centering
+
     \includegraphics[height=0.45\textwidth]{pics/SBM/uniformBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/uniformG.png}
-
     \textbf{(5) Uniform/ Random}
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/mixedBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/mixedG.png}
-
     \textbf{(6) Mixed Structure}
 
     \includegraphics[height=0.45\textwidth]{pics/SBM/nestedBB.png}
     \includegraphics[height=0.45\textwidth]{pics/SBM/nestedG.png}
-
     \textbf{(7) Nested Structure}
+
     %\includegraphics[width=0.99\textwidth]{pics/blocks.pdf}
 \end{textbox}
 
 
 \begin{textbox}{Going Further}
-
     Surveys: (\cite{fortunato2010community}) (\cite{fortunato2016community})
 
     On community detection approaches: (\cite{rosvall2019different})

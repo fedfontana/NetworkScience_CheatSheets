@@ -3,6 +3,7 @@
     \Large{\textbf{Spreading Processes}}
 \end{subbox}
 
+
 \begin{textbox}{Spreading - Diffusion}
     In many real world situations, networks can be seen as \textbf{support} of \textbf{spreading} or \textbf{diffusion} processes. Typical examples are diffusion of information, innovation, rumors, biological or computer virus, adoption of ideas or products, etc.  The support can be social networks of interactions, social media platforms of computer networks, to name a few.
 
@@ -10,6 +11,7 @@
 
     We can also call such a process \textbf{Dynamic On Networks}, as opposed to \textbf{Dynamics Of Networks}.
 \end{textbox}
+
 
 \begin{textbox}{SI - SIR - SIS}
     Three of the most popular models of diffusion in epidemiology are the \textbf{SI}, \textbf{SIR} and \textbf{SIS} models. Letters correspond to the states in which individuals can be according to the model:
@@ -43,7 +45,6 @@
         % $R_0$ & 
     \end{tabular}
 
-
     \centering
     \vspace{0.3cm}
     \includegraphics[width=0.3\textwidth]{pics/SI.pdf}
@@ -69,16 +70,16 @@
         \item The growth is faster and faster until half the population is infected ($\argmax_ {x,y}(x(1-x)):x=y=0.5$).
     \end{itemize}
 
-
     % In early times, the growth can seem slow
-
     If $\beta>0$, everyone is infected at the end of the process.
 \end{textbox}
+
 
 \begin{textbox}{SI - Sketch}
     \centering
     \includegraphics[width=0.9\textwidth]{pics/SIXP.png}
 \end{textbox}
+
 
 \begin{textbox}{SI - Application}
     An example in which this model can be appropriate is for diffusion of innovation: being infected means buying or using a new service, product or technology whose usage becomes widespread in society, e.g., television, cell-phone, internet, Netflix, etc.
@@ -90,8 +91,8 @@
     Illustration of Rogers's innovation adoption model. Image source\footnote{\url{https://en.wikipedia.org/wiki/Diffusion_of_innovations}}
 \end{textbox}
 
-\begin{textbox}{SIS}
 
+\begin{textbox}{SIS}
     When modeling real viruses, it is often useful to consider that infected individuals can \textbf{recover}, i.e., go back to the susceptible state, without becoming immune, such as for common cold or influenza. This can be modeled using the \textbf{SIS} model.
 
     Additionally to $\beta$, the SIS model requires another parameter:
@@ -121,7 +122,6 @@
     For large times, $i(t)\to 1-\frac{\mu}{\beta}$, i.e., the fraction of infected individuals stabilize around a value which depends only of parameters $\mu$ and $\beta$.
 
     % $i(t)$ & \textbf{Infected fraction}: $i(t)=\frac{i_0e^{\beta t}}{1-i_0+i_0e^{\beta t}}$
-
     % \end{tabular}
 \end{textbox}
 
@@ -184,7 +184,6 @@
     \end{itemize}
 
     % $i(t)$ & \textbf{Infected fraction}: $i(t)=\frac{i_0e^{\beta t}}{1-i_0+i_0e^{\beta t}}$
-
     % \end{tabular}
 \end{textbox}
 
@@ -195,6 +194,7 @@
 
     Image source: \footnote{\url{https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology}}
 \end{textbox}
+
 
 % \begin{textbox}{SIR - $\lambda$ or $(R_0)$}
 % In the SIR model, 
@@ -210,12 +210,15 @@
 %     \item if $R_0<1$, \textbf{the epidemic will disappear naturally}.
 % \end{itemize}
 
+
 % If $R_0$ is just above 1, the outbreak also can stop naturally by chance in the early stage.
 % \end{textbox}
+
 
 \begin{textbox}{Other non-network models}
     Epidemic modeling is a large and rich scientific topic, thus those models are nowadays considered \textit{toy models}, too simple to model real epidemics. Most used model thus include other factors, such as \textbf{natural population dynamic} (birth, natural death, etc. for long term dynamics), \textbf{population segmentation} ($tau$ might differ among subsets of populations, e.g., elderly, maried couples, etc.), \textbf{population mixing} ($\hat{c}$ might vary between members of a subpopulation and another), etc.
 \end{textbox}
+
 
 \begin{textbox}{Network models}
     A natural way to add more details to a spreading process is, instead of considering an homogeneous population, or a population composed of homogeneous subpopulations, to study the diffusion on a network representing the structure of the population.
@@ -226,6 +229,7 @@
     $\hat{c}$ has no meaning in networks (its role is played by the network structure), so by convention we use $\beta=\tau$ : the probability for a node to infect each of its neighbor at each step.
 \end{textbox}
 
+
 \begin{textbox}{Homogeneous Networks}
     If we consider an \textbf{homogeneous random network} in which all nodes have degree exactly $k$, then we can consider the spreading on this network as similar to the non-network models, with $\hat{c}=k$.
 
@@ -233,19 +237,21 @@
     \[
         \frac{di}{dt}=\beta \langle k \rangle (1-i)i
     \]
-
     Note that in practice, there are a few differences, such as a switch from a continuous to a discrete setting, but they have no consequences on large graphs.
 \end{textbox}
+
 
 \begin{textbox}{ER Networks}
     In ER random graphs, for large graphs, we have seen that $k\approx \langle k \rangle$, thus the same model description still holds, with the approximation being better for larger networks.
 \end{textbox}
+
 
 \begin{textbox}{$R_0$ on networks}
     In homogeneous or ER networks, $R_0$ is naturally defined as $\frac{\beta \langle k \rangle}{\mu}$
 
     Another way to express the same thing is that, if we define $R_0=\frac{\beta}{\mu}$, then the epidemic threshold is not equal to 1 but to $\frac{1}{\langle k \rangle}$
 \end{textbox}
+
 
 \begin{textbox}{Heterogeneous Degrees - Degree blocks}
     We have seen that most real networks have an heterogeneous degree distribution. To study analytically the effect of this property, a method is to use a \textbf{degree block approximation}: we consider all nodes with a given degree as an homogeneous groups(degree block), and analyze each of these groups separately.
@@ -258,6 +264,7 @@
 
     The same holds for global $s$ and $r$.
 \end{textbox}
+
 
 \begin{textbox}{Heterogeneous Degrees - SI}
     For the SI model, we know that all nodes are infected in the end, but what may vary is \textbf{speed} of the process.
@@ -298,6 +305,7 @@
     % Note the $(k'-1)$ in the equation: we compute the fraction of infected nodes in the neighborhood of susceptible nodes. Among the neighbors of each 
 \end{textbox}
 
+
 \begin{textbox}{Heterogeneous Degrees - SI - time scale}
     From previous equations, it can be shown\footcite{barrat2008dynamical} that the \textbf{time scale} $\tau$ of the process, i.e., a measure inversely proportional to its speed, is $\tau=\frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}$.
 
@@ -320,9 +328,11 @@
     %Fortunately, it can also be shown that such an outbreak will stop way before reaching all nodes%\footcite{barrat2008dynamical}.
 \end{textbox}
 
+
 % \begin{textbox}{WS Networks}
 % In WS random graphs, it has been observed empirically \footcite{watts1998collective} that raising the fraction of \textit{shortcuts} (the random rewiring probability) quickly raises the speed of the diffusion. It is difficult to describe analytically this phenomenon due to the mixed effect of an increased variance in degree distribution, a decrease in the clustering coefficient and a decrease in the average distance.
 % \end{textbox}
+
 
 \begin{textbox}{SIR - Experimental}
     When analytical solutions cannot be simply derived, empirical simulations can be used to observe the effect of network properties on diffusion processes.
@@ -330,13 +340,13 @@
     In particular, these properties can be used to asses the effect of typical heterogeneity: degree-heterogeneity, belonging to blocks, spatial heterogeneity, etc.
 \end{textbox}
 
+
 \begin{textbox}{SIR - Community Structure}
     In this experiment, we compare an ER network to Stochastic Block Models.
 
     \textbf{Network parameters}: $n=1000,\langle k \rangle=5$.
 
     \textbf{SBM parameters} Number of blocks $|C|= 100$.  We vary $L^{in}$, the fraction of all edges that are inside blocks. When $L^{in}=0.01,p^{in} \approx p^{out}=0.005$. When $L^{in}=0.9, p^{in}=0.5,p^{out}\approx0.0005$
-
 
     \textbf{SIR parameters}: $\theta=0.2$,$\gamma=0.5$.
     The initial number of infected nodes is 5, all of them in the same community structure.
@@ -362,6 +372,7 @@
     The highest the exponent of the degree distribution, the faster is the diffusion.
 \end{textbox}
 
+
 \begin{textbox}{SIR - Spatial effect - WS}
     In this experiment, we compare an ER network to Watts Strogatz random graphs, varying the probability of rewiring edges. It can be understood as a model of spatial proximity: with $p=0$, each node is connected only to its direct neighbors in the 1 dimensional space. If $p=1$, each node is connected to exactly $k$ random nodes.
 
@@ -378,6 +389,7 @@
     %Note that the difference with an ER model in those simulations comes from the constant degree of nodes.
 \end{textbox}
 
+
 \begin{textbox}{Application of diffusion models}
     Diffusion models can be used for several applications:
     \begin{itemize}
@@ -392,9 +404,11 @@
     One way to slow-down an epidemic consist in \textbf{removing nodes}(e.g., vaccination). The problem can be formulated as a budget constrained removal, i.e., if we can remove only $x$ nodes/edges, which one should we choose? Based on theoretical and experimental results, heuristic solutions consist in removing: \textbf{highest degree nodes}, \textbf{highest betweeness} nodes/edges (isolating communities), long-distance edges (shortcuts) in spatial networks.
 \end{textbox}
 
+
 \begin{textbox}{Friendship paradox and node removal}
     It has been proposed\footcite{cohen2003efficient} that the friendship paradox could be used to apply budget-constrained high degree nodes preferential vaccination in real networks where finding such nodes is not possible because the whole network is unknown: instead of targeting random individuals, one could vaccinate random contacts of random individuals, thus greatly increasing the average degree of vaccinated persons.
 \end{textbox}
+
 
 % \begin{textbox}{Control of epidemics}
 % Controlling an epidemic can be done using\footcite{nowzari2016analysis}:

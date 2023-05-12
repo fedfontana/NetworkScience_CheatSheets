@@ -3,10 +3,12 @@
     \Large{\textbf{Random Graphs}}
 \end{subbox}
 
+
 \begin{subbox}{subbox}{}
     \centering
     Many elements of this course are inspired by the excellent classes by Aaron Clauset, than can be found online:  \url{ http://tuvalu.santafe.edu/~aaronc/courses/5352/}  
 \end{subbox}
+
 
 \begin{textbox}{Synthetic networks usages}
     Using synthetic networks is essential in network science for several reasons. In particular, they allow to:
@@ -18,6 +20,7 @@
     \end{itemize}
 \end{textbox}
 
+
 \begin{textbox}{Synthetic networks types}
     There are three main types of synthetic networks:
     \begin{itemize}
@@ -26,6 +29,7 @@
         \item \textbf{Mechanistic models} create networks by following a set of rules, a process defined by an algorithm. e.g., \textit{Preferential attachment, Forest fire, etc.}
     \end{itemize}
 \end{textbox}
+
 
 \begin{textbox}{Regular lattices}
     Regular lattices are defined as repetition of the same pattern a given (potentially infinite) number of times. Nodes all have the same degree. The pattern can be in 1, 2 or more dimensions.
@@ -48,9 +52,11 @@
     Properties of both model are similar when the number of edges (defined by $L$ or $p$) is large.
 \end{textbox}
 
+
 \begin{textbox}{Random version of observed graph}
     When one wants to compare a real network with a \textbf{randomized} version of it (also called a \textbf{rewired} network), the usual way is not to start from the original network and to actually rewire it edge by edge, but instead to generate a new ER random graph keeping the same number of nodes and the same number of edges (or the same density) as the observed network. Properties of the observed network can then be compared with the generated network. Note that it does note make sense to compare the properties of any particular node in both networks, since nodes in the random graph have no identity. For many applications, there is not need to actually generate a random graph: one can simply compare properties of the real network with theoretical properties of the random graph.
 \end{textbox}
+
 
 \begin{textbox}{Soft ER}
     In the soft ER, the number of edges is not known in advance. The distribution of the number of edges in the soft ER is described by the \textbf{binomial distribution} $\mathbb{B}(L^{max},p)$
@@ -133,6 +139,7 @@
     You can explore this property using this interactive \textit{explorable}: \url{https://www.complexity-explorables.org/explorables/the-blob/}
 \end{textbox}
 
+
 \begin{textbox}{Configuration Model (CM)}
     The \textbf{Configuration Model} is another classic random graph model in which the degree of each node --or the degree distribution-- is preserved. In general terms, a configuration model is defined by the number of nodes in the graph, the number (or probability) of edges, and a distribution of degrees of nodes.
 
@@ -148,6 +155,7 @@
     Furthermore, the degree distribution itself is also a characteristic of the network: the fact that hubs \textit{do exist} in the network change its properties, compared with a network in which such nodes do not exist.
 \end{textbox}
 
+
 \begin{textbox}{Approximate/Soft Configuration model}
     In the approximate version of the Configuration model, each pair of node is connected by an edge with a given probability, which depends on their \textbf{objective degrees}.
 
@@ -157,6 +165,7 @@
 
     Note that this model is defined such as self-loops can exist.
 \end{textbox}
+
 
 \begin{textbox}{Rewired exact configuration model}
     When the objective of a configuration model is to obtain a randomized version of an observed graph, a common approach is to fix the exact degree of each node, and to connect \textit{stubs} randomly. An efficient way to do so is to use the following algorithm:
@@ -174,6 +183,7 @@
     For more details on configuration models with fixed degree sequences, see \footcite{fosdick2018configuring}.
 \end{textbox}
 
+
 \begin{textbox}{CM: Clustering Coefficient}
     The clustering coefficient of the configuration model can also be studied theoretically. Its derivation is beyond the scope of this class and can be found in the literature \footcite{newman2018networks}. Intuitively, we can use the same reasoning as for the ER model: the probability of having edge $(a,c) \in E$ for a triad $[a,b,c]$ such as $(a,b),(b,c) \in E$ is $\frac{k_a k_c}{2L}$. However, the probability of observing $(a,b)$ and $(b,c)$ and thus to have such a triad also depends on $k_a,k_b,k_c$. In the end, the clustering coefficient is
     \[
@@ -184,6 +194,7 @@
 
     Since the right part of the equation is a constant depending only on the average degree, the order of the clustering coefficient is $\mathcal{O}(1/L)$, and thus small for large graphs. This is true as long as $\langle k^2 \rangle$ is definite, which might not be the case if the degree distribution is a \textit{power law}.
 \end{textbox}
+
 
 \begin{textbox}{CM: Friendship paradox}
     An interesting property of the Configuration Model with heterogeneous degree distribution arises when we study the \textbf{average degree of random neighbors}. Let's call $p_k$ the probability to pick a node of degree $k$ when we pick a node at random. This probability represents the \textit{degree distribution} chosen for the configuration model. Now, if we choose one node at random, and then pick one of its neighbors at random, what is $p_{neighb,k}$, the degree distribution of \textit{random neighbors}? It is different, because nodes with a higher degree have, by definition, a higher probability of being chosen. More formally,
@@ -201,15 +212,16 @@
 
     Thus if all degrees are the same (\textit{homogeneous}), $\langle k_{neighb} \rangle=\langle k \rangle$, but if it is \textbf{heterogeneous}, $\langle k_{neighb} \rangle>\langle k \rangle$ due to the comparatively larger influence of high degrees.
 
-
     \begin{center}
         \includegraphics[width=0.9\textwidth]{pics/friendship.pdf}
     \end{center}
 \end{textbox}
 
+
 \begin{textbox}{CM: Average distance}
     We use the same logic as for the ER model of the graph being locally tree-like due to the low Clustering Coefficient to show intuitively that the \textit{average distance} is short. This property is verified experimentally.
 \end{textbox}
+
 
 \begin{textbox}
     Examples of differences in Clustering and average path length for a few real graphs, compared with randomized versions of it.
@@ -229,11 +241,13 @@
     \end{tabular}
 \end{textbox}
 
+
 \begin{textbox}{Differences btw. Real \& Random networks}
     When comparing real networks to ER and CM networks of similar properties, we observe that they tend to disagree on one of two key properties: on real graphs, usually, the graph has a high clustering coefficient and a short average distance (or sometimes the opposite).
 
     On the contrary, random networks have both a low clustering coefficient and a short average distance.
 \end{textbox}
+
 
 \begin{textbox}{Watts-Strogatz (WS) Model}
     The Watts-Strogatz model was introduced \footcite{watts1998collective} to show how a simple phenomenon could create networks having both a large clustering coefficient and a short average distance.
@@ -248,26 +262,28 @@
     The network is created following a 2-step processes: first $N$ nodes are disposed on a ring, and each node is connected to its $K$ closest neighbors. Then each edge is replaced by a random edge with probability $p$. It can be interpreted as a network combining the properties of a (1-dimentional) \textbf{regular lattice} and of an \textbf{ER network}.
 \end{textbox}
 
+
 \begin{textbox}{WS - Illustration}
     From left to right: WS graphs when increasing the probability of rewiring. $N=20$,$K=4$
     \centering
     \begin{figure}[H]
-
         \begin{subfigure}{.32\textwidth}
             \includegraphics[width=\textwidth]{pics/SW/WS0.png}
             \caption{$p=0$ \\ Regular}
         \end{subfigure}
+        
         \begin{subfigure}{.32\textwidth}
             \includegraphics[width=\textwidth]{pics/SW/WS1.png}
             \caption{$p=0.3$ \\ Small world}
         \end{subfigure}
+        
         \begin{subfigure}{.32\textwidth}
             \includegraphics[width=\textwidth]{pics/SW/WS03.png}
             \caption{$p=1$ \\ Random}
         \end{subfigure}
-
     \end{figure}
 \end{textbox}
+
 
 \begin{textbox}{WS - Small World Regime}
     If $p$ is small, the network has properties similar to a regular lattice, and if $p$ is large, properties of an ER graph.
@@ -278,6 +294,7 @@
     \end{center}
     Example with $N=200, K=6$.
 \end{textbox}
+
 
 \begin{textbox}{WS - Clustering}
     Properties of the WS model are not as simple to study theoretically as previous random graphs, so most details are not presented here.
@@ -293,14 +310,17 @@
     The average path length of the WS model has been studied through approximations and numerical simulations \footcite{newman2000models} and can be shown to become small quickly with the increase in $p$.
 \end{textbox}
 
+
 \begin{textbox}{WS - Degree distribution}
     Without entering into details, it can be shown the the degree distribution range from a fixed degree for all nodes to a Poisson distribution, since each rewired edge is decreasing the degree of some nodes and increasing the degree of some others in a random way.
 \end{textbox}
+
 
 \begin{textbox}{Barabási-Albert (BA) Model}
     The \textbf{Barabási-Albert} model of random graphs was introduced\footcite{barabasi1999emergence} to illustrate how a simple mechanism could explain a common property of real graphs, the \textbf{power-law degree distribution}.
     This mechanism is though to somewhat mimic what is happening in real life, at least for some networks. It is often called \textbf{preferential attachment}, and mimic the \textbf{rich get richer phenomena}: nodes that already have a large degree are more \textit{attractive}, and thus are more likely to become connected with other nodes creating links.
 \end{textbox}
+
 
 \begin{textbox}{BA - Preferential attachment }
     The preferential attachment process has two parameters, the number of edges to create at each step $m$ and the initial number of nodes $m_0$, with $m\leq m_0$. It is defined by the following iterative process:
@@ -309,6 +329,7 @@
         \item At each step, add a new node and $m$ links connecting it to $m$ other nodes chosen randomly proportionnaly to their degree, i.e., with probability $p_i=\frac{k_i}{\sum_j k_j}$
     \end{itemize}
 \end{textbox}
+
 
 \begin{textbox}{BA - Degree distribution }
     The degree distribution created by the preferential attachment mechanism is a power law of exponent $ \alpha=3$. The exponent of the distribution does not depend on parameters $m$ and $m_0$. The degree exponent is \textit{stationary in time}, i.e., it stays the same while we add new nodes and edges.
@@ -332,9 +353,9 @@
     \[
         C=\frac{L}{4}\frac{(\ln N)^2}{N}
     \]
-
     This is more than for a random network, but still decreases with the network size, and tends toward 0 for large graphs. It is thus considered a \textbf{small} clustering coefficient.
 \end{textbox}
+
 
 \begin{textbox}{Other random graph models }
     Many other graph models have been proposed in the literature, either \textit{mechanistic models} to mimic common properties of some graphs, as with BA and WS models, or \textit{statistical models} to generate random graphs with imposed constraints, as the Configuration model does with degree distributions.

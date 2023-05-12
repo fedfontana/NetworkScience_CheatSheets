@@ -6,16 +6,14 @@
 
 \begin{textbox}{Networks: Graph notation}
     Graph notation : $G=(V,E)$
-
     \begin{tabular}{p{0.2\textwidth}|p{0.8\textwidth}}\scriptsize
-
-
         $V$           & set of vertices/nodes. \\
         $E$           & set of edges/links.    \\
         $u\in V$      & a node.                \\
         $(u,v) \in E$ & an edge.               \\
     \end{tabular}
 \end{textbox}
+
 
 \begin{textbox}{Network - Graph notation}
     \begin{multibox}{2}
@@ -68,29 +66,25 @@
                 \end{split}
             \]
         \end{subbox}
-
     \end{multibox}
 \end{textbox}
 
-\begin{textbox}{Types of networks}
 
+\begin{textbox}{Types of networks}
     \textbf{Simple graph}: Edges can only exist or not exist between each pair of node, and there are no self-loops, i.e., an edge connecting a node to itself.
 
     \textbf{Directed graph}: Edges have a direction: $(u,v)\in V$ does not imply $(v,u)\in V$
 
     \textbf{Weighted graph}: A weight is associated to every edge.
 
-
     \noindent\rule{4cm}{0.1pt}
 
     \tiny{
         Other types of graphs (multigraphs, multipartite, hypergraphs, etc.) are introduced later}
-
-
 \end{textbox}
 
-\begin{textbox}{Counting nodes and edges}
 
+\begin{textbox}{Counting nodes and edges}
     \begin{tabular}{p{0.07\textwidth}|p{0.8\textwidth}}\scriptsize
         $N,n$     & \textbf{size}: number of nodes $|V|$. \\
 
@@ -102,14 +96,12 @@
             \text{Directed network: }=N(N-1)
         \]
     \end{tabular}
-
 \end{textbox}
+
 
 \begin{textbox}{Node-Edge description}
     \begin{tabular}{p{0.1\textwidth}|p{0.8\textwidth}}\scriptsize
-
         $N_u$       & \textbf{Neighbourhood} of $u$, nodes sharing a link with $u$.                      \\
-
 
         $k_u$       & \textbf{Degree} of $u$, number of neighbors $|N_u|$.                               \\
         \hline
@@ -120,19 +112,16 @@
         $k^{out}_u$ & \textbf{Out-degree} of $u$, number of outgoing edges  $|N^{out}_u|$.               \\
 
         $k^{in}_u$  & \textbf{In-degree} of $u$, number of incoming edges $|N^{in}_u|$                   \\
-
         \hline
-
         $w_{u,v}$   & \textbf{Weight} of edge $(u,v)$.                                                   \\
 
         $s_u$       & \textbf{Strength} of $u$, sum of weights of adjacent edges, $s_u = \sum_v w_{uv}$. \\
     \end{tabular}
-
 \end{textbox}
+
 
 \begin{textbox}{Network descriptors - Nodes/Edges}
     \begin{tabular}{p{0.08\textwidth}|p{0.8\textwidth}}\scriptsize
-
         $\langle k \rangle$ & \textbf{Average degree}:
         Real networks are sparse, i.e., typically $\langle k \rangle \ll n$. Increases slowly with network size, e.g., $\langle k \rangle \sim \log(n)$ \footcite{leskovec2005graphs}
 
@@ -145,6 +134,7 @@
     \end{tabular}
 \end{textbox}
 
+
 \begin{textbox}{Paths - Walks - Distance}
     \textbf{Walk}: Sequences of adjacent edges or nodes (e.g., \textbf{1.2.1.6.5} is a valid walk)
 
@@ -154,33 +144,27 @@
 
     \textbf{Weighted Path length}: Sum of the weights of edges on a path
 
-
     \textbf{Shortest path}: The shortest path between nodes $u,v$ is a path of minimal \textit{path length}. Not necessarily unique.
 
     \textbf{Weighted Shortest path}: path of minimal \textit{weighted path length}.
 
-
     \textbf{$\ell_{u,v}$: Distance}: The distance between nodes $u,v$ is the length of the shortest path
-
-
 \end{textbox}
+
 
 \begin{textbox}{Network descriptors - Paths}
     \begin{tabular}{p{0.07\textwidth}|p{0.8\textwidth}}\scriptsize
         $\ell_{\max}$          & \textbf{Diameter}: maximum \textit{distance} between any pair of nodes. \\
-
 
         $\langle \ell \rangle$ & \textbf{Average distance}:
         \[
             \langle \ell \rangle = \frac{1}{n(n-1)}\sum_{i\neq j} \ell_{ij}
         \]                                                                                               \\
     \end{tabular}
-
 \end{textbox}
 
 
 \begin{textbox}{Degree distribution}
-
     The degree distribution is considered an important network property. They can follow two typical distributions:
     \begin{itemize}
         \item \textbf{Bell-curved} shaped (Normal/Poisson/Binomial)
@@ -191,15 +175,14 @@
     \centering
     \includegraphics[width=0.7\textwidth]{pics/distribution.png}
 
-
     \noindent\rule{4cm}{0.1pt}
 
     \tiny{
         More details later.}
 \end{textbox}
 
-\begin{textbox}{Subgraphs}
 
+\begin{textbox}{Subgraphs}
     \textbf{Subgraph $H(W)$} (induced subgraph): subset of nodes $W$ of a graph $G=(V,E)$ and edges connecting them in $G$, i.e., subgraph $H(W)=(W,E'), W \subset V, (u,v) \in E' \iff u,v \in W \wedge (u,v) \in E$
 
     \textbf{Clique}: subgraph with $d=1$
@@ -211,11 +194,10 @@
     \textbf{Strongly Connected component}: In directed networks, a subgraph in which any two vertices are connected to each other by paths
 
     \textbf{Weakly Connected component}: In directed networks, a subgraph in which any two vertices are connected to each other by paths if we disregard directions
-
 \end{textbox}
 
-\begin{textbox}{Triangles counting}
 
+\begin{textbox}{Triangles counting}
     $\delta_u$ - \textbf{Triads of $u$:} number of triangles containing node $u$
 
     $\Delta$ - \textbf{Number of triangles in the graph} total number of triangles in the graph, $\Delta=\frac{1}{3}\sum_{u\in V}\delta_u$.
@@ -227,15 +209,13 @@
     $\delta^{\max}_u$ - \textbf{Triad potential of $u$:} maximum number of triangles that could exist around node $u$, given its degree: $\delta^{\max}_u=\binom {k_{u}}{2}$
 
     $\Delta^{\max}$ - \textbf{Triangle potential of G:} maximum number of triangles that could exist in the graph, given its degree distribution: $\Delta^{\max}=\frac {1}{3}\sum_{u\in V}\ \delta^{\max} (u)$
-
-
 \end{textbox}
+
 
 \begin{textbox}{Clustering Coefficents - Triadic closure}
     The clustering coefficient is a measure of the triadic closure of a network or of a node neighborhood. The triadic closure is a notion coming from social network analysis, often summarized by the aphorism \textit{The friends of my friends are my friends}.
 
     \noindent\rule{4cm}{0.1pt}
-
 
     $C_u$ - \textbf{Node clustering coefficient:} density of the subgraph induced by the neighborhood of $u$, $C_u = d(H(N_u)$. Also interpreted as the fraction of all possible triangles in $N_u$ that exist, $\frac{\delta_u}{\delta^{\max}_u}$
 
@@ -246,8 +226,8 @@
     \end{subbox}
 
     $C^g$ - \textbf{Global clustering coefficient:} Fraction of all possible triangles in the graph that do exist, $C^g= \frac{\Delta}{\Delta^{\max}} $
-
 \end{textbox}
+
 
 \begin{textbox}{Small World Network}
     A network is said to have the \textbf{small world} property when it has some structural properties\footcite{watts1998collective}. The notion is usually not quantitatively defined, but two properties are required:
@@ -263,8 +243,8 @@
     Be careful: in some contexts, \textit{small world network} can be used for a network that has a small Average distance, without considering its Clustering Coefficient.
 \end{textbox}
 
-\begin{textbox}{Cores and Shells}
 
+\begin{textbox}{Cores and Shells}
     Many real networks are known to have a \textbf{core-periphery} structure, i.e., there is a densely connected core at its center and a more peripheral zone in which nodes are loosely connected between them and to the core.
 
     \noindent\rule{4cm}{0.1pt}
@@ -277,8 +257,8 @@
 
     \centering
     \includegraphics[width=0.7\textwidth]{pics/k-cores.pdf}
-
 \end{textbox}
+
 
 \begin{textbox}{Vocabulary}
     \textbf{Singleton}: node with a degree $k=0$
@@ -293,7 +273,6 @@
 
     \textbf{Stub}: A stub is an half edge, i.e., edge $(u,v)$ has a stub connected to $u$ and another connected to $v$.
 
-
     \noindent\rule{4cm}{0.1pt}
 
     \textbf{Complete network}: $L=L_{max}$
@@ -301,12 +280,10 @@
     \textbf{Sparse network}: $d \ll 1$, $ L \ll L_{max}$
 
     \textbf{Connected Graph}: Graph composed of a single connected component
-
-
 \end{textbox}
 
-\begin{textbox}{Going Further}
 
+\begin{textbox}{Going Further}
     Books about network science as a whole:
     \begin{itemize}
         \item\cite{barabasi2016network} (free)
@@ -314,5 +291,4 @@
         \item \cite{zinoviev2018complex}
         \item \cite{menczer2020first}
     \end{itemize}
-
 \end{textbox}
